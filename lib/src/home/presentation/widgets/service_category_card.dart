@@ -1,24 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:home_x_client/core/data/images_data.dart';
 
 class ServiceCategoryCard extends StatelessWidget {
-  const ServiceCategoryCard({Key? key}) : super(key: key);
+  const ServiceCategoryCard(
+      {Key? key,
+      required this.onTap,
+      required this.categoryImage,
+      required this.categoryName})
+      : super(key: key);
+  final VoidCallback onTap;
+  final String categoryName, categoryImage;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.of(context).pushNamed('/services'),
+      onTap: onTap,
       child: Card(
         child: Container(
-            width: MediaQuery.of(context).size.width * 0.3,
-            height: MediaQuery.of(context).size.height * 0.2,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Expanded(child: Icon(Icons.clean_hands)),
-                Expanded(child: Text('Plumbing'))
-              ],
-            )),
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  fit: BoxFit.cover,
+                  colorFilter:
+                      ColorFilter.mode(Colors.black54, BlendMode.darken),
+                  image: FadeInImage(
+                    image: NetworkImage(categoryImage),
+                    placeholder: AssetImage(Images.ps4),
+                  ).image)),
+          child: Center(
+              child: Text(
+            categoryName,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                color: Colors.white,
+                fontSize: MediaQuery.of(context).size.width * 0.08),
+          )),
+        ),
       ),
     );
   }

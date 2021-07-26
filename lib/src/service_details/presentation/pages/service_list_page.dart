@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:home_x_client/src/home/presentation/widgets/service_list_arguments.dart';
 import 'package:home_x_client/src/service_details/presentation/widgets/service_tile.dart';
 
 class ServiceListPage extends StatelessWidget {
@@ -6,9 +7,11 @@ class ServiceListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ServiceListArguments args =
+        ModalRoute.of(context)!.settings.arguments as ServiceListArguments;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Plumbing'),
+        title: Text(args.serviceName),
       ),
       body: SafeArea(
           child: Container(
