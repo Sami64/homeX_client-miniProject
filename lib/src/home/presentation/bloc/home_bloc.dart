@@ -1,5 +1,4 @@
 import 'package:home_x_client/core/service/domain/entities/category.dart';
-import 'package:home_x_client/core/service/domain/entities/service.dart';
 import 'package:home_x_client/core/service/domain/usecases/all_services.dart';
 import 'package:home_x_client/core/usecases/usecase.dart';
 
@@ -16,4 +15,5 @@ class HomeBloc {
       yield serviceCategories;
     });
   }
+
 }

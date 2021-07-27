@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:home_x_client/src/home/presentation/widgets/service_list_arguments.dart';
+import 'package:home_x_client/src/service_details/presentation/widgets/details_arguments.dart';
 import 'package:home_x_client/src/service_details/presentation/widgets/service_tile.dart';
 
 class ServiceListPage extends StatelessWidget {
@@ -23,7 +24,8 @@ class ServiceListPage extends StatelessWidget {
               return ServiceTile(
                   title: 'Plumbing',
                   description: 'Some Description',
-                  onTap: () => Navigator.of(context).pushNamed('/details'));
+                  onTap: () => Navigator.of(context).pushNamed('/details',
+                      arguments: DetailsArguments(pk: 'pk')));
             }),
       )),
     );
