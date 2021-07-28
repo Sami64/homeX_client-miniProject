@@ -25,4 +25,17 @@ class OrdersRepositoryImpl extends OrdersRepository {
       return Left(Failure(error.message));
     }
   }
+
+  @override
+  Future<Either<Failure, Orders>> orderService(
+      {required String clientID, required String serviceID}) async {
+    try {
+      await networkInfo.hasInternet();
+      final remoteOrder = await remoteDatabase.orderServiceRequest(
+          clientID: clientID, serviceID: serviceID);
+      return Right(remoteOrder);
+    } on ServerException catch (error) {
+      return Left(Failure(error.message));
+    }
+  }
 }

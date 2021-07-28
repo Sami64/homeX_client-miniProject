@@ -46,6 +46,7 @@ class ServiceRemoteDatabaseImpl extends ServiceRemoteDatabase {
           '${RemoteApi.endpoint}/services/categories/${int.parse(pk)}'));
       if (response.statusCode == 200) {
         final categoryServices = json.decode(response.body);
+        print('RESPONSE CATEGORIES $categoryServices');
         return categoryServices
             .map<ServiceModel>((service) => ServiceModel.fromJson(service))
             .toList();

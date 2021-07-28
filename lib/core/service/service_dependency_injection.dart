@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:home_x_client/core/service/domain/usecases/category_services.dart';
 
 import 'data/database/service_remote_database.dart';
 import 'data/repositories/service_repository.dart';
@@ -16,6 +17,7 @@ void initService() {
   /// Usecases
   sl.registerLazySingleton(() => AllServices(sl()));
   sl.registerLazySingleton(() => ServiceDetails(sl()));
+  sl.registerLazySingleton(() => CategoryServices(sl()));
 
   /// Repositories
   sl.registerLazySingleton<ServiceRepository>(
