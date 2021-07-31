@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:home_x_client/core/data/images_data.dart';
+import 'package:home_x_client/core/presentation/pages/loading.dart';
 import 'package:home_x_client/core/service/domain/entities/service.dart';
 import 'package:home_x_client/injection_container.dart';
 import 'package:home_x_client/src/service_details/presentation/bloc/service_details_bloc.dart';
@@ -274,7 +275,18 @@ class ServiceDetailsPage extends StatelessWidget {
                                             topRight: Radius.circular(25))),
                                     child: ElevatedButton(
                                       child: Text('ORDER'),
-                                      onPressed: () {},
+                                      onPressed: () => showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return LoadingPage(
+                                              errorText: bloc.placeServiceOrder(
+                                                  serviceID:
+                                                      snapshot.data!.key),
+                                              callback: () =>
+                                                  Navigator.of(context)
+                                                      .pushNamed('/orders'),
+                                            );
+                                          }),
                                       style: ButtonStyle(
                                           padding: MaterialStateProperty.all(
                                               EdgeInsets.all(12)),

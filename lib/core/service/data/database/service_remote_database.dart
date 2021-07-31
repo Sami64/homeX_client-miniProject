@@ -13,6 +13,8 @@ abstract class ServiceRemoteDatabase {
   Future<List<ServiceModel>> categoryServicesRequest({required String pk});
 
   Future<ServiceModel> serviceDetailRequest({required String pk});
+
+  Future<ServiceModel> completeServiceRequest({required String orderNo});
 }
 
 class ServiceRemoteDatabaseImpl extends ServiceRemoteDatabase {
@@ -62,6 +64,20 @@ class ServiceRemoteDatabaseImpl extends ServiceRemoteDatabase {
     try {
       final response = await client
           .get(Uri.parse('${RemoteApi.endpoint}/services/service/$pk'));
+      if (response.statusCode == 200) {
+        return ServiceModel.fromJson(json.decode(response.body));
+      } else
+        throw ServerException.fromJson(json.decode(response.body));
+    } on http.ClientException {
+      throw ServerException("Please Come Back Later");
+    }
+  }
+
+  @override
+  Future<ServiceModel> completeServiceRequest({required String orderNo}) async {
+    try {
+      final response = await client
+          .post(Uri.parse('${RemoteApi.endpoint}/services/complete'));
       if (response.statusCode == 200) {
         return ServiceModel.fromJson(json.decode(response.body));
       } else

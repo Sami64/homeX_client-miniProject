@@ -48,4 +48,17 @@ class ServiceRepositoryImpl extends ServiceRepository {
       return Left(Failure(error.message));
     }
   }
+
+  @override
+  Future<Either<Failure, Service>> completeService(
+      {required String orderNo}) async {
+    try {
+      await networkInfo.hasInternet();
+      final remoteService =
+          await remoteDatabase.completeServiceRequest(orderNo: orderNo);
+      return Right(remoteService);
+    } on ServerException catch (error) {
+      return Left(Failure(error.message));
+    }
+  }
 }

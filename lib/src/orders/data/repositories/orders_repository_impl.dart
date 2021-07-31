@@ -27,6 +27,19 @@ class OrdersRepositoryImpl extends OrdersRepository {
   }
 
   @override
+  Future<Either<Failure, List<Orders>>> getOrdersCompleted(
+      {required String clientID}) async {
+    try {
+      await networkInfo.hasInternet();
+      final remoteOrders =
+          await remoteDatabase.completedOrdersRequest(clientID: clientID);
+      return Right(remoteOrders);
+    } on ServerException catch (error) {
+      return Left(Failure(error.message));
+    }
+  }
+
+  @override
   Future<Either<Failure, Orders>> orderService(
       {required String clientID, required String serviceID}) async {
     try {

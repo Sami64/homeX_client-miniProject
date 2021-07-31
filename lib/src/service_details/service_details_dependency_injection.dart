@@ -4,7 +4,7 @@ import 'package:home_x_client/src/service_details/presentation/bloc/service_deta
 void initServiceDetails() {
   // Bloc
   sl.registerFactory(
-      () => ServiceDetailsBloc(categoryServices: sl(), serviceDetails: sl()));
+      () => ServiceDetailsBloc(categoryServices: sl(), serviceDetails: sl(), orderService: sl(), userData: sl()));
 
   // Usecase
 

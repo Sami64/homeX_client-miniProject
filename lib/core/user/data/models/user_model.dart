@@ -19,13 +19,18 @@ class UserModel extends User {
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
         email: json['email'],
-        token: json['clientpk'],
-        image: json['image'],
+        token: json['clientpk'].toString(),
+        image: json.containsKey('image') ? json['image'] : '',
         name: json['clientname'],
         residentialAddress: json['address'],
         phoneNumber: json['phoneno']);
   }
 
   factory UserModel.initial() => UserModel(
-      email: '', token: '', name: '', residentialAddress: '', phoneNumber: '', image: '');
+      email: '',
+      token: '',
+      name: '',
+      residentialAddress: '',
+      phoneNumber: '',
+      image: '');
 }

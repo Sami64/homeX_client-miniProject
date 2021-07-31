@@ -9,4 +9,6 @@ abstract class ServiceRepository {
   Future<Either<Failure, List<Service>>> categoryServices({required String pk});
 
   Future<Either<Failure, Service>> serviceDetails({required String pk});
+
+  Future<Either<Failure, Service>> completeService({required String orderNo});
 }

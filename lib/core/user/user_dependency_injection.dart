@@ -4,6 +4,7 @@ import 'package:home_x_client/core/user/data/repositories/user_repository_impl.d
 import 'package:home_x_client/core/user/domain/repositories/user_repository.dart';
 import 'package:home_x_client/core/user/domain/usecases/login.dart';
 import 'package:home_x_client/core/user/domain/usecases/sign_up.dart';
+import 'package:home_x_client/core/user/domain/usecases/user_data.dart';
 
 import '../../injection_container.dart';
 
@@ -13,6 +14,7 @@ void initUser() {
   /// Usecase
   sl.registerLazySingleton(() => Login(sl()));
   sl.registerLazySingleton(() => SignUp(sl()));
+  sl.registerLazySingleton(() => UserData(sl()));
 
   /// Repository
   sl.registerLazySingleton<UserRepository>(() => UserRepositoryImpl(
@@ -22,5 +24,6 @@ void initUser() {
   sl.registerLazySingleton<UserLocalDatabase>(
       () => UserLocalDatabaseImpl(sl()));
 
-  sl.registerLazySingleton<UserRemoteDatabase>(() => UserRemoteDatabaseImpl(sl()));
+  sl.registerLazySingleton<UserRemoteDatabase>(
+      () => UserRemoteDatabaseImpl(sl()));
 }
