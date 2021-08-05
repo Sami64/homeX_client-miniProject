@@ -16,7 +16,7 @@ class SellerModel extends Seller {
 
   factory SellerModel.fromJson(Map<String, dynamic> json) {
     return SellerModel(
-        email: json.containsKey('sellerEmail') ? json['sellerEmail'] : '',
+        email: json.containsKey('email') ? json['email'] : '',
         address: json.containsKey('sellerAddress') ? json['sellerAddress'] : '',
         qualification: json.containsKey('sellerQualification')
             ? json['sellerQualification']
