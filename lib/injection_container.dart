@@ -4,6 +4,7 @@ import 'package:home_x_client/core/user/user_dependency_injection.dart';
 import 'package:home_x_client/src/explore/explore_dependency_injection.dart';
 import 'package:home_x_client/src/home/home_dependency_injection.dart';
 import 'package:home_x_client/src/login/login_dependency_injection.dart';
+import 'package:home_x_client/src/orders/orders_dependency_injection.dart';
 import 'package:home_x_client/src/service_details/service_details_dependency_injection.dart';
 import 'package:home_x_client/src/sign_up/sign_up_dependency_injection.dart';
 import 'package:http/http.dart' as http;
@@ -33,6 +34,7 @@ void initFeatures() {
   initLogin();
   initSignup();
   initExplore();
+  initOrders();
 }
 
 void initExternal() {

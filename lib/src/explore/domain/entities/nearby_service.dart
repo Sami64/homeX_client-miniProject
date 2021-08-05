@@ -6,6 +6,7 @@ class NearbyService extends Equatable {
   final double latitude;
   final double longitude;
   final String serviceName;
+  final String serviceKey;
   final Seller seller;
 
   NearbyService(
@@ -13,8 +14,9 @@ class NearbyService extends Equatable {
       required this.latitude,
       required this.longitude,
       required this.seller,
+      required this.serviceKey,
       required this.serviceName});
 
   @override
-  List<Object> get props => [key, latitude, longitude, seller, serviceName];
+  List<Object> get props => [key, latitude, longitude, seller, serviceName, serviceKey];
 }

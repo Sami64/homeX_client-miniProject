@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:home_x_client/src/home/presentation/pages/home_page.dart';
 import 'package:home_x_client/src/home/presentation/pages/main_page.dart';
 import 'package:home_x_client/src/login/presentation/pages/sign_in_screen.dart';
+import 'package:home_x_client/src/orders/presentation/pages/orders_page.dart';
 import 'package:home_x_client/src/service_details/presentation/pages/service_details_page.dart';
 import 'package:home_x_client/src/service_details/presentation/pages/service_list_page.dart';
 import 'package:home_x_client/src/sign_up/presentation/pages/sign_up_screen.dart';
@@ -22,6 +23,7 @@ class Routes {
     Routes.services: (BuildContext context) => ServiceListPage(),
     Routes.signup: (BuildContext context) => SignUpScreen(),
     Routes.login: (BuildContext context) => SignInScreen(),
-    Routes.main: (BuildContext context) => MainPage()
+    Routes.main: (BuildContext context) => MainPage(),
+    Routes.orders: (BuildContext context) => OrdersPage()
   };
 }

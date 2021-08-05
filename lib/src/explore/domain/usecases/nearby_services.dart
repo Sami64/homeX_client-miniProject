@@ -7,10 +7,9 @@ import 'package:home_x_client/src/explore/domain/repositories/explore_repository
 class NearbyServices implements UseCase<List<NearbyService>, NoParams> {
   final ExploreRepository repository;
   NearbyServices(this.repository);
-  
+
   @override
-  Future<Either<Failure, List<NearbyService>>> call(NoParams params) {
-    // TODO: implement call
-    throw UnimplementedError();
+  Future<Either<Failure, List<NearbyService>>> call(NoParams params) async {
+    return await repository.nearbyServices();
   }
 }

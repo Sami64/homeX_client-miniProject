@@ -43,6 +43,7 @@ dependencies:
   get: ^4.3.0
   hive_flutter: ^1.0.0
   google_maps_flutter: ^2.0.6
+  geolocator: ^7.4.0
 
 dev_dependencies:
   flutter_test:

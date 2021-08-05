@@ -35,6 +35,7 @@ class UserRemoteDatabaseImpl implements UserRemoteDatabase {
       final response = await request();
       print('RESPONSEE ${response.body}');
       if (response.statusCode == 200) {
+        print(response.body);
         return UserModel.fromJson(jsonDecode(response.body));
       } else {
         print('EXCEPTION OCCUR');
@@ -72,6 +73,6 @@ class UserRemoteDatabaseImpl implements UserRemoteDatabase {
 
   @override
   Future<UserModel> userDataRequest({required String token}) => _request(() =>
-      client.get(Uri.parse('${RemoteApi.endpoint}/client/profile/'),
+      client.get(Uri.parse('${RemoteApi.endpoint}/client/profile'),
           headers: {"Authorization": "Bearer $token"}));
 }

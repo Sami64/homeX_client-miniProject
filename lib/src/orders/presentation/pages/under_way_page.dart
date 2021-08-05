@@ -35,7 +35,8 @@ class UnderWayPage extends StatelessWidget {
                           sellerName: snapshot.data![index].seller.name,
                           serviceName: snapshot.data![index].serviceName,
                           orderNo: snapshot.data![index].orderNo,
-                          datePlaced: snapshot.data![index].datePlaced,
+                          datePlaced:
+                              snapshot.data![index].datePlaced.substring(0, 10),
                         );
                       }));
             else if (snapshot.hasData && snapshot.data!.length < 1)

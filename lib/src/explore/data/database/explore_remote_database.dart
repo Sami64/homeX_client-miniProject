@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:geolocator/geolocator.dart';
 import 'package:home_x_client/core/data/remote_api.dart';
 import 'package:home_x_client/core/errors/exception.dart';
 import 'package:home_x_client/src/explore/data/models/explore_model.dart';
@@ -17,8 +18,14 @@ class ExploreRemoteDatabaseImpl implements ExploreRemoteDatabase {
   @override
   Future<List<ExploreModel>> nearbyServicesRequest() async {
     try {
-      final response =
-          await client.get(Uri.parse('${RemoteApi.endpoint}/services/nearby'));
+      Position userPosition = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.high);
+
+      final response = await client
+          .post(Uri.parse('${RemoteApi.endpoint}/services/nearby'), body: {
+        "latitude": userPosition.latitude.toString(),
+        "longitude": userPosition.longitude.toString()
+      });
       if (response.statusCode == 200) {
         final nearbyServices = json.decode(response.body);
         return nearbyServices

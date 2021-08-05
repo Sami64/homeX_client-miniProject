@@ -1,3 +1,4 @@
+import 'package:home_x_client/core/service/data/models/seller_model.dart';
 import 'package:home_x_client/core/service/domain/entities/seller.dart';
 import 'package:home_x_client/src/orders/domain/entities/order.dart';
 
@@ -23,7 +24,9 @@ class OrderModel extends Orders {
     return OrderModel(
         clientID: json.containsKey('clientid') ? json['clientid'] : '',
         orderID: json.containsKey('orderspk') ? json['orderspk'] : '',
-        seller: json.containsKey('seller') ? json['seller'] : '',
+        seller: json.containsKey('seller')
+            ? SellerModel.fromJson(json['seller'])
+            : SellerModel.initial(),
         serviceName: json.containsKey('servicename') ? json['servicename'] : '',
         orderNo: json.containsKey('orderno') ? json['orderno'] : '',
         datePlaced: json.containsKey('dateplaced') ? json['dateplaced'] : '',

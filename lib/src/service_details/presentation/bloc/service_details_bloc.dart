@@ -44,6 +44,7 @@ class ServiceDetailsBloc {
 
   Future<String> placeServiceOrder({required String serviceID}) async {
     final _clientpk = await userToken();
+    print("THE SERVICEID: $serviceID");
     final failureOrOrder = await orderService(
         OrderServiceParams(clientpk: _clientpk, servicepk: serviceID));
     return await failureOrOrder.fold((l) => l.toString(), (order) => '');
