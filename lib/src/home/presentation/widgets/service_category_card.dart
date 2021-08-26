@@ -18,6 +18,7 @@ class ServiceCategoryCard extends StatelessWidget {
       child: Card(
         child: Container(
           decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
               image: DecorationImage(
                   fit: BoxFit.cover,
                   colorFilter:

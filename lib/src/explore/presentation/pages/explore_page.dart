@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:home_x_client/src/explore/domain/entities/nearby_service.dart';
 import 'package:home_x_client/src/explore/presentation/bloc/explore_bloc.dart';
@@ -16,8 +17,30 @@ class ExplorePage extends StatefulWidget {
 class _ExplorePageState extends State<ExplorePage> {
   late GoogleMapController _controller;
   final _bloc = sl<ExploreBloc>();
+  late LatLng _center;
+  bool isLoading = false;
 
-  final LatLng _center = const LatLng(28.535517, 77.391029);
+  @override
+  void initState() {
+    super.initState();
+    getUserPosition();
+  }
+
+  void getUserPosition() async {
+    setState(() {
+      isLoading = true;
+    });
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+    setState(() {
+      _center = LatLng(position.latitude, position.longitude);
+    });
+
+    setState(() {
+      isLoading = false;
+    });
+  }
+
   final Map<String, Marker> _markers = {};
 
   Future<void> onMapCreated(GoogleMapController controller) async {
@@ -75,12 +98,15 @@ class _ExplorePageState extends State<ExplorePage> {
     return Scaffold(
       body: SafeArea(
         child: Container(
-            child: GoogleMap(
-          onMapCreated: onMapCreated,
-          myLocationEnabled: true,
-          markers: _markers.values.toSet(),
-          initialCameraPosition: CameraPosition(target: _center, zoom: 10),
-        )),
+            child: isLoading
+                ? Center(child: CircularProgressIndicator())
+                : GoogleMap(
+                    onMapCreated: onMapCreated,
+                    myLocationEnabled: true,
+                    markers: _markers.values.toSet(),
+                    initialCameraPosition:
+                        CameraPosition(target: _center, zoom: 10),
+                  )),
       ),
     );
   }

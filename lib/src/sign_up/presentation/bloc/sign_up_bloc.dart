@@ -5,7 +5,7 @@ class SignupBloc {
 
   SignupBloc({required this.signUp});
 
-  Future<String> signupUser(
+  Future<String?> signupUser(
       {required String email,
       required String password,
       required String name,
@@ -18,6 +18,6 @@ class SignupBloc {
         name: name,
         phoneNumber: phoneNumber,
         residentialAddress: address));
-    return failureOrUser.fold((error) => error.toString(), (r) => '');
+    return failureOrUser.fold((error) => error.toString(), (r) => null);
   }
 }

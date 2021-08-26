@@ -5,10 +5,10 @@ class LoginBloc {
 
   LoginBloc({required this.login});
 
-  Future<String> loginUser(
+  Future<String?> loginUser(
       {required String email, required String password}) async {
     final failureOrUser =
         await login(LoginParams(username: email, password: password));
-    return failureOrUser.fold((error) => error.toString(), (r) => '');
+    return failureOrUser.fold((error) => error.toString(), (r) => null);
   }
 }
