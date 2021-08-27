@@ -45,6 +45,8 @@ class _HomePageState extends State<HomePage> {
                 child: Text(
                   'Find A Service',
                   style: TextStyle(
+                      color: Theme.of(context).primaryColor,
+                      fontWeight: FontWeight.bold,
                       fontSize: MediaQuery.of(context).size.width * 0.1),
                 ),
               ),

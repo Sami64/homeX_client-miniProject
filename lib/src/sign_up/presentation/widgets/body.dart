@@ -20,13 +20,19 @@ class Body extends StatelessWidget {
               children: [
                 SizedBox(
                     height: MediaQuery.of(context).size.height * 0.04), // 4%
-                Text("Register Account", style: TextStyle()),
+                Text("Register Account",
+                    style: TextStyle(
+                        fontSize: MediaQuery.of(context).size.width * 0.06,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold)),
                 Text(
                   "Complete your details",
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.08),
-                SignUpForm(bloc: bloc,),
+                SignUpForm(
+                  bloc: bloc,
+                ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.08),
 
                 SizedBox(height: MediaQuery.of(context).size.height * 0.08),
